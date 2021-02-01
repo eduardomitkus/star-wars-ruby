@@ -10,6 +10,7 @@ services:
       WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: example
+      POSTGRES_DATABASE: starwars
 
     build:
       context: .
@@ -35,6 +36,7 @@ services:
   db:
     image: postgres:12.2
     environment:
+      POSTGRES_DB: starwars
       POSTGRES_PASSWORD: example
     volumes:
       - db_data:/var/lib/postgresql/data
