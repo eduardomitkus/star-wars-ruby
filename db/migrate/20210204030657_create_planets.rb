@@ -8,7 +8,7 @@ class CreatePlanets < ActiveRecord::Migration[6.1]
       t.integer :orbital_period
       t.integer :population
       t.string :terrain
-      t.references :homeworld, index:true, foreign_key: {to_table: :species}
+      t.references :homeworld, index:true, foreign_key: {to_table: :breeds}
       t.timestamps
     end
   end

@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_03_011146) do
+ActiveRecord::Schema.define(version: 2021_02_04_030929) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "breeds", force: :cascade do |t|
+    t.string "name"
+    t.string "clasification"
+    t.string "designation"
+    t.string "language"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "people", force: :cascade do |t|
     t.string "name"
@@ -46,15 +55,6 @@ ActiveRecord::Schema.define(version: 2021_02_03_011146) do
     t.index ["homeworld_id"], name: "index_planets_on_homeworld_id"
   end
 
-  create_table "species", force: :cascade do |t|
-    t.string "name"
-    t.string "clasification"
-    t.string "designation"
-    t.string "language"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "starships", force: :cascade do |t|
     t.string "name"
     t.string "model"
@@ -67,5 +67,5 @@ ActiveRecord::Schema.define(version: 2021_02_03_011146) do
 
   add_foreign_key "people", "planets"
   add_foreign_key "people", "starships"
-  add_foreign_key "planets", "species", column: "homeworld_id"
+  add_foreign_key "planets", "breeds", column: "homeworld_id"
 end
