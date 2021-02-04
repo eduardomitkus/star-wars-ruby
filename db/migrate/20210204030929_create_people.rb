@@ -10,7 +10,7 @@ class CreatePeople < ActiveRecord::Migration[6.1]
       t.string :mass
       t.string :height
       t.references :planet, index:true, foreign_key: {to_table: :planets}
-      t.references :starship, index:true, foreign_key: {to_table: :starships}
+      t.references :specie, index:true, foreign_key: {to_table: :breeds}
       t.timestamps
     end
   end
