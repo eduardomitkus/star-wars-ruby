@@ -1,4 +1,4 @@
-class CreateStarships < ActiveRecord::Migration[6.1]
+class CreateStarship < ActiveRecord::Migration[6.1]
   def change
     create_table :starships do |t|
       t.string :name
@@ -6,6 +6,7 @@ class CreateStarships < ActiveRecord::Migration[6.1]
       t.string :manufacturer
       t.string :max_atmosphering_speed
       t.integer :passengers
+      t.references :pilot, index:true, foreign_key: {to_table: :people}
       t.timestamps
     end
   end
@@ -14,3 +15,5 @@ class CreateStarships < ActiveRecord::Migration[6.1]
     drop_table :starships
   end
 end
+
+
