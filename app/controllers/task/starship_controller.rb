@@ -4,7 +4,8 @@ require_relative '../../services/starwars_service'
 class StarshipController < ApplicationController
 
   def self.create
-    StarwarsService.getStarships
+    starshipsResponse = StarwarsService.getStarships
+    Starship.create(starshipsResponse)
   end
 
 end
