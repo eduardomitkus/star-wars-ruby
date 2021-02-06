@@ -14,9 +14,14 @@ class StarwarsTaskController < ApplicationController
 
   # Salva Species da API no database
   # @return [String]
-  private
   def self.create_species
-    SpecieRepository.new(Specie).create
+    specie_repository = SpecieRepository.new(Specie)
+
+    if specie_repository.has_registers?
+      return "Species já foram salvas no database"
+    end
+
+    specie_repository.create
     return "Species salvas no database"
   end
 
