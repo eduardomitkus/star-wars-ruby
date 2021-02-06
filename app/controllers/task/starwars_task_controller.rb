@@ -16,7 +16,7 @@ class StarwarsTaskController < ApplicationController
   # Salva Species da API no database
   # @return [String]
   def self.createSpecies
-    Specie.create(StarwarsService.getSpecies)
+    SpecieRepository.new(Specie).create
     return "Species salvas no database"
   end
 
