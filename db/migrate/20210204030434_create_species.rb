@@ -2,7 +2,7 @@ class CreateSpecies < ActiveRecord::Migration[6.1]
   def change
     create_table :species do |t|
       t.string :name
-      t.string :clasification
+      t.string :classification
       t.string :designation
       t.string :language
       t.timestamps
