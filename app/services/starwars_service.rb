@@ -3,7 +3,7 @@ require 'json'
 
 class StarwarsService
 
-  # @class [SpecieController] Gerencia rotinas do contexto de task das species
+  # @class [StarwarsService] Gerencia requisições na API Star Wars
 
   BASE_URL = 'https://swapi.dev/api/'
   STARSHIPS_URL = 'starships/'
