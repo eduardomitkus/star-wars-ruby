@@ -5,10 +5,10 @@ namespace :starwars do
 
     # salva todos os starships no database
     task :starships => :environment do
-        puts StarwarsTaskController.createStarships
+        puts StarwarsTaskController.create_starships
     end
     # salva todas as species no database
     task :species => :environment do
-        puts StarwarsTaskController.createSpecies
+        puts StarwarsTaskController.create_species
     end
 end
