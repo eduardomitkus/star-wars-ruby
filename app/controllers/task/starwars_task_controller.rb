@@ -1,9 +1,9 @@
 require_relative '../../controllers/application_controller'
 require_relative '../../services/starwars_service'
 
-class StarshipController < ApplicationController
+class StarwarsTaskController < ApplicationController
 
-  def self.create
+  def self.createStarships
     if Starship.all.exists?
       return "As naves já foram salvas no database"
     end
@@ -11,6 +11,13 @@ class StarshipController < ApplicationController
     starshipsResponse = StarwarsService.getStarships
     Starship.create(starshipsResponse)
     return "Naves salvas no database"
+  end
+
+  # Salva Species da API no database
+  # @return [String]
+  def self.createSpecies
+    Specie.create(StarwarsService.getSpecies)
+    return "Species salvas no database"
   end
 
 end
