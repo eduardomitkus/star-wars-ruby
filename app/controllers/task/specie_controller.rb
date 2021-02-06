@@ -1,4 +1,5 @@
 require_relative '../../controllers/application_controller'
+require_relative '../../services/starwars_service'
 
 class SpecieController < ApplicationController
 
@@ -7,7 +8,8 @@ class SpecieController < ApplicationController
     # Salva Species da API no database
     # @return [String]
     def self.create
-        return "command"
+        Specie.create(StarwarsService.getSpecies)
+        return "Species salvas no database"
     end
 
 end
