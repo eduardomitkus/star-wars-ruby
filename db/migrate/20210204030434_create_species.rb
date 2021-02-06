@@ -1,6 +1,6 @@
-class CreateBreeds < ActiveRecord::Migration[6.1]
+class CreateSpecies < ActiveRecord::Migration[6.1]
   def change
-    create_table :breeds do |t|
+    create_table :species do |t|
       t.string :name
       t.string :clasification
       t.string :designation
@@ -10,6 +10,6 @@ class CreateBreeds < ActiveRecord::Migration[6.1]
   end
 
   def down
-    drop_table :breeds
+    drop_table :species
   end
 end
