@@ -12,7 +12,7 @@ class StarwarsTaskController < ApplicationController
       return "As naves já foram salvas no database"
     end
 
-    Starship.create(StarwarsService.getStarships)
+    Starship.create(StarwarsService.get_starships)
     return "Naves salvas no database"
   end
 
@@ -25,7 +25,7 @@ class StarwarsTaskController < ApplicationController
       return "Species já foram salvas no database"
     end
 
-    specie_repository.create(StarwarsService.getSpecies)
+    specie_repository.create(StarwarsService.get_species)
     return "Species salvas no database"
   end
 
