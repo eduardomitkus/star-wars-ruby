@@ -1,17 +1,16 @@
-require_relative '../services/starwars_service'
-
 class SpecieRepository
 
-  # @param specieModel [Specie]
-  # @attribute specieModel [Specie]
+  # @param model [Specie]
+  # @attribute specie_model [Specie]
   def initialize(model)
     @specie_model = model
   end
 
   # Persiste Spcecies no database
+  # @param data [Array]
   # @return [Boolean]
-  def create
-    @specie_model.create(StarwarsService.getSpecies)
+  def create(data)
+    @specie_model.create(data)
   end
 
   # Persiste Spcecies no database

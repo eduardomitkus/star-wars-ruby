@@ -25,7 +25,7 @@ class StarwarsTaskController < ApplicationController
       return "Species já foram salvas no database"
     end
 
-    specie_repository.create
+    specie_repository.create(StarwarsService.getSpecies)
     return "Species salvas no database"
   end
 
