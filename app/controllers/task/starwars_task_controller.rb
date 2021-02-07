@@ -22,11 +22,24 @@ class StarwarsTaskController < ApplicationController
     specie_repository = SpecieRepository.new(Specie)
 
     if specie_repository.has_registers?
-      return "Species já foram salvas no database"
+      return "Species já foram salvas no database."
     end
 
     specie_repository.create(StarwarsService.get_species)
-    return "Species salvas no database"
+    return "Species salvas no database."
+  end
+
+  # Salva Planets da API no database
+  # @return [String]
+  def self.create_planets
+    planet_repository = PlanetRepository.new(Planet)
+
+    if planet_repository.has_registers?
+      return "Planets já foram salvos no database."
+    end
+
+    planet_repository.create(StarwarsService.get_planets)
+    return "Planets salvos no database!"
   end
 
 end

@@ -13,10 +13,10 @@ class SpecieRepository
     @specie_model.create(data)
   end
 
-  # Persiste Spcecies no database
+  # Verifica se há Spcecie cadastrado no database
   # @return [Boolean]
   def has_registers?
-    @specie_model.all.exists?
+    @specie_model.exists?
   end
 
 end

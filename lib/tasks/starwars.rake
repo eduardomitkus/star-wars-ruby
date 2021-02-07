@@ -11,4 +11,8 @@ namespace :starwars do
     task :species => :environment do
         puts StarwarsTaskController.create_species
     end
+
+    task :planets => :environment do
+        puts StarwarsTaskController.create_planets
+    end
 end
