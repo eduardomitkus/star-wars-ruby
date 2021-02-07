@@ -14,7 +14,7 @@ class StarwarsService
   # @return [Hash]
   def self.get_starships
     get_all_registers(
-      STARSHIPS_URL,
+      BASE_URL << STARSHIPS_URL,
       [:name, :model, :manufacturer, :max_atmosphering_speed, :passengers]
     )
   end
@@ -23,7 +23,7 @@ class StarwarsService
   # @return [Hash] data
   def self.get_species
     get_all_registers(
-      SPECIES_URL,
+      BASE_URL << SPECIES_URL,
       [:name, :classification, :designation, :language]
     )
   end
@@ -32,7 +32,7 @@ class StarwarsService
   # @return [Hash] data
   def self.get_planets
     get_all_registers(
-      PLANETS_URL,
+      BASE_URL << PLANETS_URL,
       [:name, :climate, :diameter, :gravity, :orbital_period, :population, :terrain]
     )
   end
@@ -49,9 +49,8 @@ class StarwarsService
   # @param url_resource[String]
   # @param fields[Hash]
   # @return [Hash]
-  def self.get_all_registers(url_resource, fields)
+  def self.get_all_registers(url, fields)
     data = []
-    url = BASE_URL << url_resource
 
     loop do
       response = parse_data(RestClient.get(url, headers={}))
