@@ -14,4 +14,10 @@ class PlanetRepository
     @planet_model.create(data)
   end
 
+  # Verifica se há Planet cadastrado no database
+  # @return [Boolean]
+  def has_registers?
+    @planet_model.exists?
+  end
+
 end
