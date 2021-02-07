@@ -20,8 +20,10 @@ class StarwarsService
   # Retorna todas as Starships da API
   # @return [Array] data
   def self.get_species
-    data = RestClient.get(BASE_URL << SPECIES_URL, headers={})
-    return parse_data(data).map{|specie| specie.slice('name', 'classification', 'designation', 'language')}
+    get_all_registers(
+      SPECIES_URL,
+      [:name, :classification, :designation, :language]
+    )
   end
 
   # Retorna todas os Planets da API
