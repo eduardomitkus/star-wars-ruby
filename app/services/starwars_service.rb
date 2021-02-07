@@ -7,7 +7,8 @@ class StarwarsService
 
   BASE_URL = 'https://swapi.dev/api/'
   STARSHIPS_URL = 'starships/'
-  SPECIES_URL = 'species'
+  SPECIES_URL = 'species/'
+  PLANETS_URL = 'planets/'
 
   # Retorna todas as Starships da API
   # @return [Hash]
@@ -21,6 +22,13 @@ class StarwarsService
   def self.get_species
     data = RestClient.get(BASE_URL << SPECIES_URL, headers={})
     return parse_data(data).map{|specie| specie.slice('name', 'classification', 'designation', 'language')}
+  end
+
+  # Retorna todas os Planets da API
+  # @return [Array] data
+  def self.get_planets
+    data = RestClient.get(BASE_URL << PLANETS_URL, headers={})
+    return parse_data(data).map{|specie| specie.slice('name', 'climate', 'diameter', 'gravity', 'orbital_period', 'population', 'terrain')}
   end
 
   # Realiza parse em Hash e retorna a lista de resultadps
