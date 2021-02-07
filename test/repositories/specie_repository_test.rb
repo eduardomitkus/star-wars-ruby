@@ -8,7 +8,7 @@ class SpecieRepositoryTest < ActiveSupport::TestCase
     @specie_response = StarwarsService.get_species
   end
 
-  test "should register a species from api" do
+  test "should register a specie from api" do
     specie_reponse = @specie_response.sample
     specie_name = specie_reponse['name']
     specie_name_saved = @specie_repository.create(specie_reponse).name
@@ -16,5 +16,4 @@ class SpecieRepositoryTest < ActiveSupport::TestCase
     puts specie_name_saved
     assert_equal(specie_name, specie_name_saved)
   end
-
 end

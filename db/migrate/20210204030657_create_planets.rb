@@ -3,10 +3,10 @@ class CreatePlanets < ActiveRecord::Migration[6.1]
     create_table :planets do |t|
       t.string :name
       t.string :climate
-      t.integer :diamater
+      t.integer :diameter
       t.string :gravity
       t.integer :orbital_period
-      t.integer :population
+      t.bigint :population
       t.string :terrain
       t.timestamps
     end
