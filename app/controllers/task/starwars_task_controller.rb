@@ -8,11 +8,13 @@ class StarwarsTaskController < ApplicationController
   # Salva Starships da API no database
   # @return [String]
   def self.create_starships
+    starship_repository = StarshipRepository.new(Starship)
+
     if Starship.all.exists?
       return "As naves já foram salvas no database"
     end
 
-    Starship.create(StarwarsService.get_starships)
+    starship_repository.create(StarwarsService.get_starships)
     return "Naves salvas no database"
   end
 

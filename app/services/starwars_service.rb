@@ -13,12 +13,14 @@ class StarwarsService
   # Retorna todas as Starships da API
   # @return [Hash]
   def self.get_starships
-    data = RestClient.get(BASE_URL << STARSHIPS_URL, headers={})
-    return parse_data(data).map{|starship| starship.slice('name', 'model', 'manufacturer', 'max_atmosphering_speed', 'passengers')}
+    get_all_registers(
+      STARSHIPS_URL,
+      [:name, :model, :manufacturer, :max_atmosphering_speed, :passengers]
+    )
   end
 
   # Retorna todas as Starships da API
-  # @return [Array] data
+  # @return [Hash] data
   def self.get_species
     get_all_registers(
       SPECIES_URL,
@@ -59,7 +61,6 @@ class StarwarsService
       if url == nil
         break
       end
-
     end
 
     data.map { |item| item.slice(*fields) }
