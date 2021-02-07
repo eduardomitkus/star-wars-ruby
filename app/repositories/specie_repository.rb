@@ -16,7 +16,7 @@ class SpecieRepository
   # Verifica se há Spcecie cadastrado no database
   # @return [Boolean]
   def has_registers?
-    @specie_model.all.exists?
+    @specie_model.exists?
   end
 
 end
