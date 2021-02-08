@@ -15,7 +15,7 @@ class StarwarsService
   def self.get_starships
     get_all_registers(
       BASE_URL << STARSHIPS_URL,
-      [:name, :model, :manufacturer, :max_atmosphering_speed, :passengers]
+      [:name, :model, :manufacturer, :max_atmosphering_speed, :passengers, :pilots]
     )
   end
 
@@ -53,7 +53,7 @@ class StarwarsService
     data = []
 
     loop do
-      response = parse_data(RestClient.get(url, headers={}))
+      response = get_reponse(url)
       data = data + response.with_indifferent_access[:results]
       url = response.with_indifferent_access[:next]
 
@@ -63,6 +63,10 @@ class StarwarsService
     end
 
     data.map { |item| item.slice(*fields) }
+  end
+
+  def self.get_reponse(url)
+    parse_data(RestClient.get(url, headers={}))
   end
 
 end

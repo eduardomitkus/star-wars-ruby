@@ -10,11 +10,28 @@ class StarwarsTaskController < ApplicationController
   def self.create_starships
     starship_repository = StarshipRepository.new(Starship)
 
-    if Starship.all.exists?
-      return "As naves já foram salvas no database"
+    # if Starship.all.exists?
+    #   return "As naves já foram salvas no database"
+    # end
+
+    # starship_repository.create(StarwarsService.get_starships)
+
+    StarwarsService.get_starships.each do |starship|
+      starship_model = Starship.create(starship.except("pilots"))
+
+      starship["pilots"].each do |pilot_url|
+        data = StarwarsService.get_reponse(pilot_url).slice("name", "birth_year", "eye_color", "gender", "hair_color", "skin_color", "mass", "height")
+        puts data
+        if Person.exists?(name: data["name"]) == false
+          person_model = Person.create(data)
+          starship_model.person << person_model
+          starship_model.save
+
+        end
+
+      end
     end
 
-    starship_repository.create(StarwarsService.get_starships)
     return "Naves salvas no database"
   end
 
