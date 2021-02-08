@@ -1,5 +1,6 @@
 require_relative '../../controllers/application_controller'
 require_relative '../../services/starwars_service'
+require_relative '../../services/starship_service'
 
 class StarwarsTaskController < ApplicationController
 
@@ -12,7 +13,10 @@ class StarwarsTaskController < ApplicationController
       return "As naves já foram salvas no database"
     end
 
-    Starship.create(StarwarsService.get_starships)
+    StarshipService
+      .new(StarshipRepository.new(Starship), PersonRepository.new(Person))
+      .create(StarwarsService.get_starships)
+
     return "Naves salvas no database"
   end
 

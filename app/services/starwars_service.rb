@@ -13,15 +13,17 @@ class StarwarsService
   # Retorna todas as Starships da API
   # @return [Hash]
   def self.get_starships
-    data = RestClient.get(BASE_URL << STARSHIPS_URL, headers={})
-    return parse_data(data).map{|starship| starship.slice('name', 'model', 'manufacturer', 'max_atmosphering_speed', 'passengers')}
+    get_all_registers(
+      BASE_URL << STARSHIPS_URL,
+      [:name, :model, :manufacturer, :max_atmosphering_speed, :passengers, :pilots]
+    )
   end
 
   # Retorna todas as Starships da API
-  # @return [Array] data
+  # @return [Hash] data
   def self.get_species
     get_all_registers(
-      SPECIES_URL,
+      BASE_URL << SPECIES_URL,
       [:name, :classification, :designation, :language]
     )
   end
@@ -30,7 +32,7 @@ class StarwarsService
   # @return [Hash] data
   def self.get_planets
     get_all_registers(
-      PLANETS_URL,
+      BASE_URL << PLANETS_URL,
       [:name, :climate, :diameter, :gravity, :orbital_period, :population, :terrain]
     )
   end
@@ -47,22 +49,28 @@ class StarwarsService
   # @param url_resource[String]
   # @param fields[Hash]
   # @return [Hash]
-  def self.get_all_registers(url_resource, fields)
+  def self.get_all_registers(url, fields)
     data = []
-    url = BASE_URL << url_resource
 
     loop do
-      response = parse_data(RestClient.get(url, headers={}))
+      response = get_response(url)
       data = data + response.with_indifferent_access[:results]
       url = response.with_indifferent_access[:next]
 
       if url == nil
         break
       end
-
     end
 
     data.map { |item| item.slice(*fields) }
+  end
+
+  def self.get_response(url)
+    parse_data(RestClient.get(url, headers={}))
+  end
+
+  def self.get_pilot(pilot_url)
+    get_response(pilot_url).slice("name", "birth_year", "eye_color", "gender", "hair_color", "skin_color", "mass", "height")
   end
 
 end

@@ -2,7 +2,6 @@ class PlanetRepository
 
   # @param model [PLanet]
   # @attribute planet_model [Planet]
-
   def initialize(model)
     @planet_model = model
   end
