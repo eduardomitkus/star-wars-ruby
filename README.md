@@ -64,3 +64,7 @@ Rotina de linha de comando Rails para salvar entidas da API Star Wars no databas
 
 - **Documentação oficial Rails**. https://rubyonrails.org/
 - **Documentação oficial ruby**. https://www.ruby-lang.org/pt/
+
+## Schema Database
+ ![alt text](https://i.ibb.co/wWz130D/diagram.png)
+
