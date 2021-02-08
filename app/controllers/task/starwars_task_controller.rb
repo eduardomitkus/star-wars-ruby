@@ -18,7 +18,7 @@ class StarwarsTaskController < ApplicationController
       .new(StarshipRepository.new(Starship), PersonRepository.new(Person))
       .create(StarwarsService.get_starships)
 
-    return "Naves salvas no database"
+    return "Starships salvas no database com sucesso!"
   end
 
   # Salva Species da API no database
@@ -31,7 +31,7 @@ class StarwarsTaskController < ApplicationController
     end
 
     specie_repository.create(StarwarsService.get_species)
-    return "Species salvas no database."
+    return "Species salvas no database com sucesso!."
   end
 
   # Salva Planets da API no database
@@ -44,7 +44,7 @@ class StarwarsTaskController < ApplicationController
     end
 
     planet_repository.create(StarwarsService.get_planets)
-    return "Planets salvos no database!"
+    return "Planets salvos no database com sucesso!"
   end
 
   # Salva People da API no database
@@ -54,7 +54,7 @@ class StarwarsTaskController < ApplicationController
       .new(PersonRepository.new(Person), PlanetRepository.new(Planet), SpecieRepository.new(Specie))
       .create(StarwarsService.get_people)
 
-    return "People salvos no database!"
+    return "People salvos no database com sucesso!"
   end
 
 end
