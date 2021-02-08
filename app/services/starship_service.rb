@@ -12,17 +12,17 @@ class StarshipService
   # @return [nil]
   def create(starships_data)
     starships_data.each do |starship|
-      starship_created = @starship_repository.create(starship.except("pilots"))
-      associate_with_pilots(starship["pilots"], starship_created)
+      associate_with_pilots(starship)
     end
     nil
   end
 
-  # @param pilot_urls [Array]
-  # @param starship_created [Starship]
+  # @param starship [Array]
   # @return [nil]
-  def associate_with_pilots(pilot_urls, starship_created)
-    pilot_urls.each do |pilot_url|
+  def associate_with_pilots(starship)
+    starship_created = @starship_repository.create(starship.except("pilots"))
+
+    starship["pilots"].each do |pilot_url|
       data = StarwarsService.get_pilot(pilot_url)
       puts data
       #Vincula as persons criadas com suas repectivas starships
