@@ -1,6 +1,7 @@
 require_relative '../../controllers/application_controller'
 require_relative '../../services/starwars_service'
 require_relative '../../services/starship_service'
+require_relative '../../services/person_service'
 
 class StarwarsTaskController < ApplicationController
 
@@ -44,6 +45,14 @@ class StarwarsTaskController < ApplicationController
 
     planet_repository.create(StarwarsService.get_planets)
     return "Planets salvos no database!"
+  end
+
+  def self.create_people
+    PersonService
+      .new(PersonRepository.new(Person), PlanetRepository.new(Planet), SpecieRepository.new(Specie))
+      .create(StarwarsService.get_people)
+
+    return "People salvos no database!"
   end
 
 end

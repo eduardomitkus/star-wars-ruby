@@ -19,4 +19,8 @@ class PlanetRepository
     @planet_model.exists?
   end
 
+  def find(name)
+    @planet_model.where(name: name)
+  end
+
 end

@@ -19,4 +19,8 @@ class SpecieRepository
     @specie_model.exists?
   end
 
+  def find(name)
+    @specie_model.where(name: name)
+  end
+
 end
