@@ -1,11 +1,18 @@
 class PersonService
 
+  # Persiste Peoples no database
+  # @param person_repository [PersonRepository]
+  # @param planet_repository [PLanetRepository]
+  # @param specie_repository [SpecieRepository]
   def initialize(person_repository, planet_repository, specie_repository)
     @person_repository = person_repository
     @planet_repository = planet_repository
     @specie_repository = specie_repository
   end
 
+  # Persiste Peoples no database
+  # @param data [Array]
+  # @return [Person]
   def create(data)
     data.each do |response|
       puts person = @person_repository.create_or_find(response)

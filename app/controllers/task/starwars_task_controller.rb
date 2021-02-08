@@ -47,6 +47,8 @@ class StarwarsTaskController < ApplicationController
     return "Planets salvos no database!"
   end
 
+  # Salva People da API no database
+  # @return [String]
   def self.create_people
     PersonService
       .new(PersonRepository.new(Person), PlanetRepository.new(Planet), SpecieRepository.new(Specie))
