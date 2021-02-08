@@ -1,5 +1,6 @@
 require_relative '../../controllers/application_controller'
 require_relative '../../services/starwars_service'
+require_relative '../../services/starship_service'
 
 class StarwarsTaskController < ApplicationController
 
@@ -9,28 +10,13 @@ class StarwarsTaskController < ApplicationController
   # @return [String]
   def self.create_starships
     starship_repository = StarshipRepository.new(Starship)
+    person_repository = PersonRepository.new(Person)
 
-    # if Starship.all.exists?
-    #   return "As naves já foram salvas no database"
-    # end
-
-    # starship_repository.create(StarwarsService.get_starships)
-
-    StarwarsService.get_starships.each do |starship|
-      starship_model = Starship.create(starship.except("pilots"))
-
-      starship["pilots"].each do |pilot_url|
-        data = StarwarsService.get_response(pilot_url).slice("name", "birth_year", "eye_color", "gender", "hair_color", "skin_color", "mass", "height")
-        puts data
-        if Person.exists?(name: data["name"]) == false
-          person_model = Person.create(data)
-          starship_model.person << person_model
-          starship_model.save
-
-        end
-
-      end
+    if Starship.all.exists?
+      return "As naves já foram salvas no database"
     end
+
+    StarshipService.create(StarwarsService.get_starships, starship_repository, person_repository)
 
     return "Naves salvas no database"
   end
