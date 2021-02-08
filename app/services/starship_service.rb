@@ -20,7 +20,7 @@ class StarshipService
   # @param starship [Array]
   # @return [nil]
   def save_with_pilots(starship)
-    starship_created = @starship_repository.create(starship.except("pilots"))
+    puts starship_created = @starship_repository.create(starship.except("pilots"))
 
     starship["pilots"].each do |pilot_url|
       data = StarwarsService.get_pilot(pilot_url)

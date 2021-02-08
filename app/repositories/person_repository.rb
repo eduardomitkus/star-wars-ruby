@@ -21,7 +21,7 @@ class PersonRepository
     person = @person_model.where(name: data["name"])
     
      if person.exists?
-       return person
+       return person.first
      end
 
     create(data.except("homeworld", "species"))
