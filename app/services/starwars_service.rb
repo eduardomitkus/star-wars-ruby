@@ -9,6 +9,7 @@ class StarwarsService
   STARSHIPS_URL = 'starships/'
   SPECIES_URL = 'species/'
   PLANETS_URL = 'planets/'
+  PEOPLE_URL = 'people/'
 
   # Retorna todas as Starships da API
   # @return [Hash]
@@ -69,8 +70,19 @@ class StarwarsService
     parse_data(RestClient.get(url, headers={}))
   end
 
+  # Retorna todos os Pilots/People
+  # @return [Hash] data
   def self.get_pilot(pilot_url)
     get_response(pilot_url).slice("name", "birth_year", "eye_color", "gender", "hair_color", "skin_color", "mass", "height")
+  end
+
+  # Retorna todas os Planets da API
+  # @return [Hash] data
+  def self.get_people
+    get_all_registers(
+      BASE_URL << PEOPLE_URL,
+      [:name, :birth_year, :eye_color, :gender, :hair_color, :skin_color, :mass, :height, :homeworld, :species]
+    )
   end
 
 end
