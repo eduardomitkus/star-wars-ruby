@@ -13,4 +13,9 @@ class StarshipRepository
     @starship_model.create(data)
   end
 
+  def person_associate(starship, person)
+    starship.person << person
+    starship.save
+  end
+
 end

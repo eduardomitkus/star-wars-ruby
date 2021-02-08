@@ -69,4 +69,8 @@ class StarwarsService
     parse_data(RestClient.get(url, headers={}))
   end
 
+  def self.get_pilot(pilot_url)
+    get_response(pilot_url).slice("name", "birth_year", "eye_color", "gender", "hair_color", "skin_color", "mass", "height")
+  end
+
 end
