@@ -8,7 +8,7 @@ class StarshipService
   def self.create(starships_data, starship_repository, person_repository)
     starships_data.each do |starship|
       starship_model = starship_repository.create(starship.except("pilots"))
-      #Lista as urls de corresponde a cada person/pilot
+      #Lista as urls que corresponde a cada person/pilot
       starship["pilots"].each do |pilot_url|
         data = StarwarsService.get_pilot(pilot_url)
         puts data
