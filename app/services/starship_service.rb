@@ -1,26 +1,37 @@
 class StarshipService
 
+  # @param starship_repository [StarshipRepository]
+  # @param person_repository [person_repository]
+  def initialize(starship_repository, person_repository)
+    @starship_repository = starship_repository
+    @person_repository = person_repository
+  end
+
   # Salva starships que são pesquisadas na API e vincula seus respectivos pilotos
   # @param starships_data [Array]
-  # @param starship_repository [StarshipRepository]
-  # @param person_repository [PersonRepository]
-  # @return [Void]
-  def self.create(starships_data, starship_repository, person_repository)
+  # @return [nil]
+  def create(starships_data)
     starships_data.each do |starship|
-      starship_model = starship_repository.create(starship.except("pilots"))
-      #Lista as urls que correspondem a cada person/pilot
-      starship["pilots"].each do |pilot_url|
-        data = StarwarsService.get_pilot(pilot_url)
-        puts data
-        #Vincula as persons criadas com suas repectivas starships
-        if person_repository.find(data["name"]) == false
-          person_model = person_repository.create(data)
-          starship_repository.person_associate(starship_model, person_model)
-        end
+      starship_created = @starship_repository.create(starship.except("pilots"))
+      associate_with_pilots(starship["pilots"], starship_created)
+    end
+    nil
+  end
+
+  # @param pilot_urls [Array]
+  # @param starship_created [Starship]
+  # @return [nil]
+  def associate_with_pilots(pilot_urls, starship_created)
+    pilot_urls.each do |pilot_url|
+      data = StarwarsService.get_pilot(pilot_url)
+      puts data
+      #Vincula as persons criadas com suas repectivas starships
+      if @person_repository.find(data["name"]) == false
+        person_model = @person_repository.create(data)
+        @starship_repository.person_associate(starship_created, person_model)
       end
     end
-
-    return
+    nil
   end
 
 end

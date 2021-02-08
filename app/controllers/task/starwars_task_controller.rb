@@ -15,8 +15,7 @@ class StarwarsTaskController < ApplicationController
     if Starship.all.exists?
       return "As naves já foram salvas no database"
     end
-
-    StarshipService.create(StarwarsService.get_starships, starship_repository, person_repository)
+    StarshipService.new(starship_repository, person_repository).create(StarwarsService.get_starships)
 
     return "Naves salvas no database"
   end
