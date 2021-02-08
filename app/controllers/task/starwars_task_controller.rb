@@ -20,7 +20,7 @@ class StarwarsTaskController < ApplicationController
       starship_model = Starship.create(starship.except("pilots"))
 
       starship["pilots"].each do |pilot_url|
-        data = StarwarsService.get_reponse(pilot_url).slice("name", "birth_year", "eye_color", "gender", "hair_color", "skin_color", "mass", "height")
+        data = StarwarsService.get_response(pilot_url).slice("name", "birth_year", "eye_color", "gender", "hair_color", "skin_color", "mass", "height")
         puts data
         if Person.exists?(name: data["name"]) == false
           person_model = Person.create(data)

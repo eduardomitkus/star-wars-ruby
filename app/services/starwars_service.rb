@@ -53,7 +53,7 @@ class StarwarsService
     data = []
 
     loop do
-      response = get_reponse(url)
+      response = get_response(url)
       data = data + response.with_indifferent_access[:results]
       url = response.with_indifferent_access[:next]
 
@@ -65,7 +65,7 @@ class StarwarsService
     data.map { |item| item.slice(*fields) }
   end
 
-  def self.get_reponse(url)
+  def self.get_response(url)
     parse_data(RestClient.get(url, headers={}))
   end
 
