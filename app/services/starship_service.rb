@@ -18,7 +18,7 @@ class StarshipService
   end
 
   # @param starship [Array]
-  # @return [nil]
+  # @return [Starship]
   def save_with_pilots(starship)
     puts starship_created = @starship_repository.create(starship.except("pilots"))
 
