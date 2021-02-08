@@ -17,4 +17,14 @@ class PersonRepository
     @person_model.exists?(name: name)
   end
 
+  def create_or_find(data)
+    person = @person_model.where(name: data["name"])
+    
+     if person.exists?
+       return person
+     end
+
+    create(data.except("homeworld", "species"))
+  end
+
 end
